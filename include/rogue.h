@@ -8,6 +8,7 @@
 typedef struct Level
 {
     char ** tiles;
+    int level;
     int numberOfRooms;
     struct Room **rooms;
     struct Monster **monsters;
@@ -36,10 +37,23 @@ typedef struct Player{
     //Room *room;
 }Player;
 
+typedef struct Monster
+{
+    char symbol;
+    int health;
+    int attack;
+    int speed;
+    int defence;
+    int pathfinding;
+    Position position;
+}Monster;
+
+
 int screenSetUp();
 
 /* level/map functions */
 Room ** roomsSetUp();
+Level * createLevel();
 char ** saveLevelPositions();
 
 /* player functions */
@@ -52,5 +66,11 @@ int playerMove(Position * newPosition, Player * user, char ** level);
 Room * createRoom(int x, int y, int height, int width);
 int drawRoom(Room * room);
 int connectDoors(Position * doorOne, Position * doorTwo);
+
+/* monster functions */
+int  addMonsters(Level *level);
+Monster * selectMonster(int level);
+Monster * createMonster(char symbol, int health, int attack, int speed, int defence, int pathfinding);
+int setStartingPosition(Monster * monster, Room * room);
 
 #endif

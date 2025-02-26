@@ -8,15 +8,15 @@ int main(){
     Level * level;
 
     screenSetUp();
-   
-   level = createLevel();
+    
+   level = createLevel(1);
 
     user = playerSetUp();
 
     /* main game loop */
     while ((ch=getch()) != 'q'){
        newPosition= handleInput(ch,user);
-       checkPosition( newPosition, user, level);
+       checkPosition( newPosition, user, level->tiles);
     }
     endwin();
     return 0;

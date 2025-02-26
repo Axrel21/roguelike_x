@@ -5,7 +5,14 @@ Level * createLevel(int level)
     Level * newLevel;
     newLevel = malloc(sizeof(Level));
 
-    
+    newLevel->level = level;
+    newLevel->numberOfRooms = 3;
+    newLevel->rooms = roomsSetUp();
+    newLevel->tiles = saveLevelPositions();
+
+    addMonsters(newLevel);
+
+    return newLevel;
 }
 
 Room ** roomsSetUp(){
@@ -26,6 +33,7 @@ Room ** roomsSetUp(){
     return rooms;
 
 }
+
 
 char ** saveLevelPositions()
 {
